@@ -73,3 +73,27 @@ func stats( grades: [Int] )
 }
 
 print(stats(grades: [1, 2, 3, 4, 5, 6, 7, 8 , 9, 10]))
+
+func counterFactory(start: Int) -> ( () -> Int ) {
+
+    var c = start
+    func counter() -> Int {
+        c += 1
+        return c
+    }
+    
+    return counter;
+}
+
+var count1To10 = counterFactory(start: 0)
+for _ in 1...10 {
+    print(count1To10(), terminator: ",")
+}
+print()
+
+var count20To50 = counterFactory(start: 20)
+for _ in 1...30 {
+    print(count20To50(), terminator: ",")
+}
+print()
+
