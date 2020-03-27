@@ -97,3 +97,37 @@ for _ in 1...30 {
 }
 print()
 
+
+func exists(list: [Int], condition: ((Int) -> Bool) ) -> Bool {
+    for item in list {
+        if condition(item) {
+            return true
+        }
+    }
+    return false
+}
+
+func largerThan100(n: Int) -> Bool {
+    return n > 100
+}
+
+let n1 = [1,2,3,4]
+let n2 = [1,2,3,4,101]
+print( exists(list: n1, condition: largerThan100 ) )
+print( exists(list: n2, condition: largerThan100 ) )
+
+let n3 = n1.map({
+    (n: Int) -> Int in
+    return n % 2 == 0 ? n * 2 : 0
+})
+
+print(n3)
+
+let n4a = n1.sorted(by: {
+    (n1: Int, n2: Int) -> Bool in
+        return n1 > n2
+})
+let n4b = n1.sorted(by: {$0 > $1} )
+let n4 = n1.sorted{ $0 > $1 }
+print(n4b)
+
