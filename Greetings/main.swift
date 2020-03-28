@@ -150,7 +150,7 @@ class Shape {
     let message = "Shape with"
 
     func describe() -> String {
-        return message + "\(noOfSides)"
+        return message + " \(noOfSides) sides."
     }
     
     func setSides(sides: Int) {
@@ -158,3 +158,131 @@ class Shape {
     }
 }
 
+let triangle = Shape()
+triangle.setSides(sides:3)
+print(triangle.describe())
+
+// Class with init
+class NamedShape {
+    var name: String
+    var noOfSides: Int = 0
+    let message: String = "Shape with "
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    // clean up in deinit
+    deinit {
+        noOfSides = 0 // not required
+    }
+    
+    func describe() -> String {
+        return message + "\(noOfSides) sides."
+    }
+    
+}
+
+// inherit
+
+class Square: NamedShape {
+    var sideLength: Double
+
+    init(sideLength: Double, name: String) {
+        self.sideLength = sideLength
+        super.init(name: name)
+        noOfSides = 4
+    }
+
+    func area() -> Double {
+        return sideLength * sideLength
+    }
+
+    override func describe() -> String {
+        return "A square with sides of length \(sideLength)."
+    }
+}
+
+let sq = Square(sideLength: 5.2, name: "my test square")
+print(sq.area())
+print(sq.describe())
+
+
+// circle class
+class Circle : NamedShape {
+    var radius : Double
+    
+    init(radius: Double, name: String) {
+        self.radius = radius
+        super.init(name: name)
+        noOfSides = 0
+    }
+    
+    func area() -> Double {
+        return Double.pi*radius*radius;
+    }
+    
+    override func describe() -> String {
+        return "A circle with radius of length \(radius)"
+    }
+}
+
+let c = Circle(radius : 3, name: "super circle")
+print("c area: \(c.area())")
+print(c.describe())
+
+// Equilateral Triangle
+
+class EquilateralTriangle : NamedShape {
+    var sideLength: Double = 0.0
+    init(sideLength: Double, name: String) {
+            self.sideLength = sideLength
+            super.init(name: name)
+            noOfSides = 3
+        }
+
+    var perimeter: Double {
+        get {
+            return 3.0 * sideLength
+        }
+        set {
+            sideLength = newValue / 3.0
+        }
+    }
+
+    override func describe() -> String {
+        return "An equilateral triangle with sides of length \(sideLength)."
+    }
+}
+
+
+var eqTR = EquilateralTriangle(sideLength: 3.1, name: "a triangle")
+print(eqTR.perimeter)
+
+eqTR.perimeter = 9.9
+print(eqTR.sideLength)
+
+
+// triangle + Square :: will set
+class TriangleAndSquare {
+    var triangle: EquilateralTriangle {
+        willSet {
+            square.sideLength = newValue.sideLength
+        }
+    }
+    var square: Square {
+        willSet {
+            triangle.sideLength = newValue.sideLength
+        }
+    }
+    init(size: Double, name: String) {
+        square = Square(sideLength: size, name: name)
+        triangle = EquilateralTriangle(sideLength: size, name: name)
+    }
+}
+var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
+print(triangleAndSquare.square.sideLength)
+print(triangleAndSquare.triangle.sideLength)
+
+triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
+print(triangleAndSquare.triangle.sideLength)
