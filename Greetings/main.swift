@@ -308,8 +308,8 @@ let (x1, y1) = (1, 2)
 // arithmetic operator
 // + , - , *, / ( NO OVERFLOW BY DEFAULT )
 
-var n11 = Int.max;
-print ("n1 : \(n11)")
+//var n11 = Int.max;
+//print ("n1 : \(n11)")
 //var n21 = n11 + 1
 //print ("n2 : \(n21)")
 
