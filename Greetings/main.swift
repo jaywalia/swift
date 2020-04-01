@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 // Say Hello
 print("Hello, World!")
 print("Greetings By Kirei Kode!")
@@ -286,3 +287,48 @@ print(triangleAndSquare.triangle.sideLength)
 
 triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
 print(triangleAndSquare.triangle.sideLength)
+
+
+// BASICS
+
+// operators
+// unary are prefix and postfix
+// binary are infix
+// ternary : Only one : if x % 2 == 0 ? return "even" : "odd"
+// operands
+
+// assignment operator
+let xx = 1
+var xy = 2
+xy = xx
+
+let (x1, y1) = (1, 2)
+//if x = y {} Assignment operator doesn't return anything UNLIKE C
+
+// arithmetic operator
+// + , - , *, / ( NO OVERFLOW BY DEFAULT )
+
+var n11 = Int.max;
+print ("n1 : \(n11)")
+//var n21 = n11 + 1
+//print ("n2 : \(n21)")
+
+// remainder operator : 9 % 4
+// 9 = (4*2) + 1 ( 1 is returned)
+
+// unary minus operator
+// - (-1) = + 1
+
+// unary plus operator : only to provide symmetry when writing negative numbers
+// compound assignment operators : a += 1
+// comparison operators : ==, !=, <, > , >=, <= , === , !==
+// tuple comparison (1, carrot) < (2, banana) : left to right comparison
+// ternary operator : q ? a1: a2;
+// Nil coalescing operator :  a ?? b is equivalent to a != nil ? a! : b
+//      notice the a! : it means i know a is not nil, go ahead and forcefull unwrap it
+// Range operators : 1...5 (includes 5)  1..<5 (doesn't include 5) [2...] (from 2 to infinity) [...7] books also has half range ops
+// Logical &&, ||, !
+//
+//
+
+
