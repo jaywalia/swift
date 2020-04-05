@@ -288,6 +288,80 @@ print(triangleAndSquare.triangle.sideLength)
 triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
 print(triangleAndSquare.triangle.sideLength)
 
+// Optionalsç
+var possibleNumber = "123"
+var mayBeANumber = Int(possibleNumber)
+
+var badNumber = Int("n234")
+var surveyAnswer: String?
+var x1 :Int? = 3
+
+// get a constant
+if let n = Int(possibleNumber) {
+    print("It is a nunber : \(n)")
+} else {
+    print("Not a number: \(possibleNumber)")
+}
+
+// gat a variable
+if var n2 = Int(possibleNumber) {
+    n2 = n2 * 2
+    print("\(n2)")
+} else {
+    print("tough luck")
+}
+
+// Implicitly unwrapped optionals
+class Customer {
+    let name: String
+    var card: CreditCard?
+    init(name: String) {
+        self.name = name
+    }
+    deinit { print("\(name) is being deinitialized") }
+}
+
+class CreditCard {
+    let number: UInt64
+    unowned let customer: Customer
+    init(number: UInt64, customer: Customer) {
+        self.number = number
+        self.customer = customer
+    }
+    deinit { print("Card #\(number) is being deinitialized") }
+}
+
+var john: Customer?
+john = Customer(name: "John Appleseed")
+john!.card = CreditCard(number: 1234_5678_9012_3456, customer: john!)
+
+let possibleString: String? = "I'm possible?"
+let forcedString: String = possibleString! // requires an exclamation point
+
+let assumedString: String! = "An implicitly unwrapped optional string."
+let implicitString: String = assumedString // no need for an exclamation point”
+
+// error handling
+/*
+func makeASandwich() throws {
+    // ...
+}
+
+var SandwichError : SandwichErrorClass
+
+do {
+    try makeASandwich()
+    eatASandwich()
+} catch SandwichError.outOfCleanDishes {
+    washDishes()
+} catch SandwichError.missingIngredients(let ingredients) {
+    buyGroceries(ingredients)
+}
+ */
+
+
+
+
 
 // BASICS
 
